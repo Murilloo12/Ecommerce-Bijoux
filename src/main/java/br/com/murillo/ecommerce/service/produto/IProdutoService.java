@@ -2,6 +2,7 @@ package br.com.murillo.ecommerce.service.produto;
 
 import br.com.murillo.ecommerce.model.Categoria;
 import br.com.murillo.ecommerce.model.Produto;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface IProdutoService {
 
     public Produto atualizar(Produto produto);
 
-    public List<Produto> recuperarTodos();
+    public Page<Produto> recuperarTodos(int numPagina);
 
     public List<Produto> recuperarPorPalavraChave(String palavraChave);
 

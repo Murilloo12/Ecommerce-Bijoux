@@ -4,6 +4,9 @@ import br.com.murillo.ecommerce.dao.ProdutoDAO;
 import br.com.murillo.ecommerce.model.Categoria;
 import br.com.murillo.ecommerce.model.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,6 +16,8 @@ public class ProdutoServiceImpl implements IProdutoService {
 
     @Autowired
     private ProdutoDAO produtoDAO;
+
+    private static final int PAGE_SIZE = 5;
 
     @Override
     public Produto cadastrarNovo(Produto produto) {
@@ -25,8 +30,10 @@ public class ProdutoServiceImpl implements IProdutoService {
     }
 
     @Override
-    public List<Produto> recuperarTodos() {
-        return produtoDAO.findByOrderByNomeAsc();
+    public Page<Produto> recuperarTodos(int numPagina) {
+        System.out.println("numPagina: " + numPagina + "/" + PAGE_SIZE);
+        Pageable pageable = PageRequest.of(numPagina - 1,PAGE_SIZE);
+        return produtoDAO.findByOrderByNomeAsc(pageable);
     }
 
     @Override
