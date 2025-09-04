@@ -1,5 +1,6 @@
 package br.com.murillo.ecommerce.service.pedido;
 
+import br.com.murillo.ecommerce.dto.FaturamentoMensal;
 import br.com.murillo.ecommerce.model.Cliente;
 import br.com.murillo.ecommerce.model.Pedido;
 
@@ -15,4 +16,8 @@ public interface IPedidoService {
     public Pedido recuperarPeloNumero(Integer numPedido);
 
     public List<Pedido> recuperarPorStatus(Integer status);
+
+    public List<FaturamentoMensal> recuperarFaturamento();
+
+    List<FaturamentoMensal> recuperarFaturamento(Integer ano);
 }
